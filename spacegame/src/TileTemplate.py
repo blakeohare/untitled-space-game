@@ -5,7 +5,7 @@ class TileTemplate:
 		self.height = $parse_int(size[1])
 		self.image_init = False
 		self.images = []
-		self.blocking = False
+		self.is_blocking = False
 		self.static_image = None
 		self.is_static_image = False
 		self.tesselation_fixed = False # true if the tile should start the tesselation at the position of the tile, rather than the top left corner of the screen
@@ -18,20 +18,17 @@ class TileTemplate:
 			self.is_static_image = True
 		else:
 			self.image_count = $list_length(self.images)
-			
-		
 		
 		for flag in flags:
 			if flag == '-':
 				pass
 			elif flag == 'x':
-				self.blocking = True
+				self.is_blocking = True
 			elif flag == 't':
 				self.tesselation_fixed = True
 			else:
 				$print("Unrecognized flag in tile '" + id + "': '" + flag + "'")
-				
-	
+		
 	def get_image(self, rc):
 		if self.is_static_image:
 			return self.static_image

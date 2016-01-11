@@ -3,6 +3,7 @@ TILE_ID_ALLOC = [0]
 class Tile:
 	def __init__(self, template, x, y, width, height):
 		self.template = template
+		self.is_blocking = template.is_blocking
 		self.id = template.id
 		TILE_ID_ALLOC[0] += 1
 		self.unique_id = TILE_ID_ALLOC[0]

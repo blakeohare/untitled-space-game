@@ -1,4 +1,15 @@
 class Layer:
+	def __init__(self, id, bg_slice, obstacle_slice):
+		self.id = id
+		self.width = obstacle_slice.width
+		self.height = obstacle_slice.height
+		self.obs = obstacle_slice
+		self.bg = bg_slice
+		self.slices = [self.bg, self.obs]
+		self.sprites = []
+	
+
+class LayerSlice:
 	def __init__(self, raw_tile_ids, width, height):
 		self.width = width
 		self.height = height
@@ -66,3 +77,4 @@ class Layer:
 				$list_add(output, unique[tile_key])
 			self.tiles_as_list = output
 		return output
+

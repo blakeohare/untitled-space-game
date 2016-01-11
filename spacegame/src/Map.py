@@ -5,6 +5,8 @@ class Map:
 		self.width = None
 		self.height = None
 		self.areas_by_id = {}
+		self.layers_by_id = {}
+		
 		file_path = 'maps/' + map_id + '.txt'
 		content = $read_text_resource(file_path)
 		kvp = {}
@@ -38,7 +40,6 @@ class Map:
 				self.areas_by_id[id] = Waypoint(id, layer, x, y, width, height)
 		
 		self.layers = []
-		self.layer_ids = []
 		
 		width = $parse_int(widthStr)
 		height = $parse_int(heightStr)
@@ -51,9 +52,10 @@ class Map:
 			if $string_length(layer_id) > 0:
 				layerAboveIds = $string_split(kvp['layer-' + layer_id + '-obs'], ',')
 				layerBelowIds = $string_split(kvp['layer-' + layer_id + '-bg'], ',')
-				layerAbove = Layer(layerAboveIds, width, height)
-				layerBelow = Layer(layerBelowIds, width, height)
+				layerAbove = LayerSlice(layerAboveIds, width, height)
+				layerBelow = LayerSlice(layerBelowIds, width, height)
 				
-				$list_add(self.layers, [layerBelow, layerAbove])
-				$list_add(self.layer_ids, layer_id)
+				layer = Layer(layer_id, layerBelow, layerAbove)
+				$list_add(self.layers, layer)
+				self.layers_by_id[layer_id] = layer
 			
