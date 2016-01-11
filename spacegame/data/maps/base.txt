@@ -1,0 +1,6 @@
+width:20
+height:20
+layers:lower
+layer-lower-bg:b#20#2,b#2#16,g#16#16,b#2#16,b#20#2
+layer-lower-obs:@#20#20
+areas:START|lower|3|3|2|2

@@ -1,0 +1,8 @@
+# tile manifest (columns are tab-delimited)
+# - id
+# - size
+# - flags (see TileManifest.py)
+# - images (comma-delimited)
+
+g	2,2	-	grass
+b	2,2	x	block
